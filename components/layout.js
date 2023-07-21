@@ -3,11 +3,19 @@ import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
-const name = 'Aouis'
 export const siteTitle = 'Aouis Website with Nextjs'
 
 export default function Layout({ children, home }) {
+  const [dynamicName, setDynamicName] = useState("Aouis")
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDynamicName("Aouis2");
+    }, 2000);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -34,9 +42,9 @@ export default function Layout({ children, home }) {
               className={utilStyles.borderCircle}
               height={144}
               width={144}
-              alt={name}
+              alt={dynamicName}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.heading2Xl}>{dynamicName}</h1>
           </>
         ) : (
           <>
@@ -47,12 +55,12 @@ export default function Layout({ children, home }) {
                 className={utilStyles.borderCircle}
                 height={108}
                 width={108}
-                alt={name}
+                alt={dynamicName}
               />
             </Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/" className={utilStyles.colorInherit}>
-                {name}
+                {dynamicName}
               </Link>
             </h2>
           </>
